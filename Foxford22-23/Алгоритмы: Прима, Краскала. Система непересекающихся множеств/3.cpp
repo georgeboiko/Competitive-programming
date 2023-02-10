@@ -28,12 +28,14 @@ inline bool operator < (const Edge& a, const Edge& b) {
 	return a.w < b.w;
 }
 
-vector<ll> p, d;
+//vector<ll> p, d;
+ll d[100001], p[100001];
 
 void init(ll n) {
-	p.resize(n);
+	/*p.resize(n);
 	d.resize(n);
-	iota(all(p), 0);
+	iota(all(p), 0);*/
+	for (ll i = 0; i < 100001; ++i) p[i] = i;
 }
 
 ll get_par(ll v) {
@@ -56,7 +58,6 @@ int main() {
 	ll n, m;
 	cin >> n >> m;
 	init(n);
-	vector<ll>ans;
 	ll answ = n - 1;
 	for (ll i = 0; i < m; ++i) {
 		ll x, y;
