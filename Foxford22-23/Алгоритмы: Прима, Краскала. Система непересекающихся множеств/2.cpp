@@ -104,18 +104,21 @@ typedef long double ld;
 
 const ll INF = 1e14;
 
-ld dist2(ll i, ll j, vector<ld>& x, vector<ld>& y) {
+vector<ll>x, y;
+
+ll dist2(ll i, ll j) {
     return (x[i] - x[j]) * (x[i] - x[j]) + (y[i] - y[j]) * (y[i] - y[j]);
 }
 
 int main() {
-	fastIO;
-	ll n;
-	cin >> n;
-	vector<ld>x(n), y(n), min_e(n, INF), end_e(n, -1), used(n, 0);
-	for (ll i = 0; i < n; ++i) {
-		cin >> x[i] >> y[i];
-	}
+    fastIO;
+    ll n;
+    cin >> n;
+    vector<ll> min_e(n, INF), end_e(n, -1), used(n, 0);
+    x.resize(n); y.resize(n);
+    for (ll i = 0; i < n; ++i) {
+	cin >> x[i] >> y[i];
+    }
     ld dist = min_e[1] = 0;
     for (ll i = 0; i < n; ++i) {
         ll v = -1;
@@ -126,10 +129,10 @@ int main() {
         }
         used[v] = 1;
         if (end_e[v] != -1) {
-            dist += sqrt(dist2(v, end_e[v], x, y));
+            dist += sqrt((ld)dist2(v, end_e[v]));
         }
         for (ll j = 0; j < n; ++j) {
-            ld dV_TO = dist2(v, j, x, y);
+            ll dV_TO = dist2(v, j);
             if (!used[j] && (dV_TO < min_e[j])) {
                 min_e[j] = dV_TO;
                 end_e[j] = v;
