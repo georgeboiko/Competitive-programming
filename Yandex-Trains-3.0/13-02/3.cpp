@@ -25,8 +25,11 @@ int main() {
 	ll n;
 	cin >> n;
 	vector<ll>a(n);
+	set<ll>s;
 	for (ll& i : a) cin >> i;
-	sort(all(a));
+	for (ll i : a) s.insert(i);
+	a = {};
+	for (auto i : s) a.push_back(i);
 	ll m;
 	cin >> m;
 	while (m--) {
